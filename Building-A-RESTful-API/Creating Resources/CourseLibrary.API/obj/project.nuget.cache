@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "xIE5OXx1HoG82viB6TEfP7Zww8o3lk1fJl85GyMTYJsORp+7E8TJn6kuoTlViNiO6xVJzkteCSmfkAKEVsJykw==",
+  "dgSpecHash": "KMwSUEFH8rYcyp0Q3YSYRx4ifcCMHAH/mdPHaksfUxDJMAZjre8JWzNuWmpos3IbR5W8y9IlzzQTJvI8Qj702g==",
   "success": true,
   "projectFilePath": "c:\\Users\\jakber\\Documents\\Personal Development\\Pluralsight\\Pluralsight\\Building-A-RESTful-API\\Creating Resources\\CourseLibrary.API\\CourseLibrary.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jakber\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
+    "C:\\Users\\jakber\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.1\\automapper.extensions.microsoft.dependencyinjection.6.1.1.nupkg.sha512",
     "C:\\Users\\jakber\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
     "C:\\Users\\jakber\\.nuget\\packages\\microsoft.data.sqlclient\\1.0.19249.1\\microsoft.data.sqlclient.1.0.19249.1.nupkg.sha512",
     "C:\\Users\\jakber\\.nuget\\packages\\microsoft.entityframeworkcore\\3.0.0\\microsoft.entityframeworkcore.3.0.0.nupkg.sha512",
