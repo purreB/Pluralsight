@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Models
 {
-    public class CourseForCreationDto : CourseForManipulationDto
-    {     }
+  public class CourseForCreationDto : CourseForManipulationDto
+  {
+  }
 }
