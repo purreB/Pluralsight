@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Models
 {
-  public class CourseForUpdateDto : CourseForManipulationDto
+  [CourseTitleMustBeDifferentFromDescription(ErrorMessage = "Title must be different from description")]
+  public class CourseForUpdateDto
   {
-    [Required(ErrorMessage = "You should fill out a description.")]
+    [Required(ErrorMessage = "You should fill out a title,")]
+    [MaxLength(100, ErrorMessage = "The title must be no more than 100 characters")]
     public string Title { get; set; }
-    public override string Description { get => base.Description; set => base.Description = value; }
-
+    [MaxLength(1500, ErrorMessage = "The description must be no more than 1500 characters")]
+    public string Description { get; set; }
   }
 }
