@@ -8,15 +8,15 @@ using CourseLibrary.API.ValidationAttributes;
 
 namespace CourseLibrary.API.Models
 {
+  [CourseTitleMustBeDifferentFromDescription(ErrorMessage = "Title must be different from description")]
+
   public class CourseForCreationDto
   {
-    [CourseTitleMustBeDifferentFromDescription]
-
-    [Required]
-    [MaxLength(100)]
+    [Required(ErrorMessage = "Title is required")]
+    [MaxLength(100, ErrorMessage = "Title is too long")]
     public string Title { get; set; }
 
-    [MaxLength(1500)]
+    [MaxLength(1500, ErrorMessage = "Description is too long")]
     public string Description { get; set; }
 
     // public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
