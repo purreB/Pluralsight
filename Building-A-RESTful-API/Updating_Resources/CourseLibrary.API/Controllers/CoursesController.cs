@@ -2,14 +2,8 @@
 using CourseLibrary.API.Models;
 using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Controllers
 {
@@ -79,7 +73,7 @@ namespace CourseLibrary.API.Controllers
     }
 
     [HttpPut("{courseId}")]
-    public ActionResult UpdateCourseForAuthor(Guid authorId, Guid courseId, CourseForUpdateDto course)
+    public IActionResult UpdateCourseForAuthor(Guid authorId, Guid courseId, CourseForUpdateDto course)
     {
       if (!_courseLibraryRepository.AuthorExists(authorId))
       {
@@ -89,7 +83,14 @@ namespace CourseLibrary.API.Controllers
       var courseForAuthorFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
       if (courseForAuthorFromRepo == null)
       {
-        return NotFound();
+        var courseToAdd = _mapper.Map<Entities.Course>(course);
+        courseToAdd.Id = courseId;
+
+        _courseLibraryRepository.AddCourse(authorId, courseToAdd);
+        _courseLibraryRepository.Save();
+
+        var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
+        return CreatedAtRoute("GetCourseForAuthor", new { authorId = authorId, courseId = courseToReturn.Id }, courseToReturn);
       }
 
       _mapper.Map(course, courseForAuthorFromRepo);
