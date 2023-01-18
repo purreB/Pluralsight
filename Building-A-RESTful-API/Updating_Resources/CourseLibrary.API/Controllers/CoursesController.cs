@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CourseLibrary.API.Models;
 using CourseLibrary.API.Services;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -99,6 +100,12 @@ namespace CourseLibrary.API.Controllers
       _courseLibraryRepository.Save();
 
       return NoContent();
+    }
+
+    [HttpPatch("{courseId}")]
+    public ActionResult PartiallyUpdateCourseForAuthor(Guid authorId, Guid courseId, JsonPatchDocument<CourseForUpdateDto> patchDocument)
+    {
+
     }
   }
 }
