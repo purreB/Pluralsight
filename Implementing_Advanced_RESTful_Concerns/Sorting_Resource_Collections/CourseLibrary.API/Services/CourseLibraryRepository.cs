@@ -11,6 +11,7 @@ namespace CourseLibrary.API.Services
   public class CourseLibraryRepository : ICourseLibraryRepository, IDisposable
   {
     private readonly CourseLibraryContext _context;
+    private readonly IPropertyMappingService _propertyMappingService;
 
     public CourseLibraryRepository(CourseLibraryContext context)
     {
@@ -150,10 +151,9 @@ namespace CourseLibrary.API.Services
 
       if (!string.IsNullOrWhiteSpace(authorsResourceParameters.OrderBy))
       {
-        if (authorsResourceParameters.OrderBy.ToLowerInvariant() == "name")
-        {
-          collection = collection.OrderBy(a => a.FirstName).ThenBy(a => a.LastName);
-        }
+        var authorPropertyMappingDictionary = _propertyMappingService.GetPropertyMapping<Models.AuthorDto, Author>();
+
+        collection = collection.ApplySort(authorsResourceParameters.OrderBy, authorPropertyMappingDictionary);
       }
 
       return PagedList<Author>.Create(collection,
