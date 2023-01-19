@@ -60,8 +60,7 @@ namespace CourseLibrary.API.Services
     }
 
 
-    public Dictionary<string, PropertyMappingValue> GetPropertyMapping
-       <TSource, TDestination>()
+    public Dictionary<string, PropertyMappingValue> GetPropertyMapping<TSource, TDestination>()
     {
       // get matching mapping
       var matchingMapping = _propertyMappings
