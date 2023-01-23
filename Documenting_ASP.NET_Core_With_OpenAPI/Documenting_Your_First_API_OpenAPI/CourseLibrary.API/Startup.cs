@@ -126,6 +126,16 @@ namespace CourseLibrary.API
         options.UseSqlServer(
                   @"Server=(localdb)\mssqllocaldb;Database=CourseLibraryDB;Trusted_Connection=True;");
       });
+
+      services.AddSwaggerGen(setupAction =>
+      {
+        setupAction.SwaggerDoc("courseLibraryAPI", new Microsoft.OpenApi.Models.OpenApiInfo()
+        {
+          Title = "Course Library API",
+          Version = "1"
+        });
+      });
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -149,7 +159,7 @@ namespace CourseLibrary.API
       }
 
       // app.UseResponseCaching();
-
+      app.UseSwagger();
       app.UseHttpCacheHeaders();
 
       app.UseRouting();
