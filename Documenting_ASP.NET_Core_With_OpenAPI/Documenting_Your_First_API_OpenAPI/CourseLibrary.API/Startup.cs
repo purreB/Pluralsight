@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
+using Microsoft.EntityFrameworkCore.Sqlite;
 using System;
 using System.Linq;
 
@@ -123,8 +124,7 @@ namespace CourseLibrary.API
 
       services.AddDbContext<CourseLibraryContext>(options =>
       {
-        options.UseSqlServer(
-                  @"Server=(localdb)\mssqllocaldb;Database=CourseLibraryDB;Trusted_Connection=True;");
+        options.UseSqlite(Configuration.GetConnectionString("WebApiDatabase"));
       });
 
       services.AddSwaggerGen(setupAction =>
@@ -160,6 +160,11 @@ namespace CourseLibrary.API
 
       // app.UseResponseCaching();
       app.UseSwagger();
+      app.UseSwaggerUI(setupAction =>
+      {
+        setupAction.SwaggerEndpoint("/swagger/courseLibraryAPI/swagger.json", "Course Library API");
+      });
+
       app.UseHttpCacheHeaders();
 
       app.UseRouting();
