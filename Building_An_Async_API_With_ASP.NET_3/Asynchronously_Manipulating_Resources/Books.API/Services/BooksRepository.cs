@@ -24,28 +24,39 @@ namespace Books.API.Services
           .Include(b => b.Author).FirstOrDefaultAsync(b => b.Id == id);
     }
 
-    public async Task<IEnumerable<Book>> GetBooksAsync()
-    {
-      await _context.Database.ExecuteSqlRawAsync("WAITFOR DELAY '00:00:02';");
-      return await _context.Books.Include(b => b.Author).ToListAsync();
-    }
     public IEnumerable<Book> GetBooks()
     {
       _context.Database.ExecuteSqlRaw("WAITFOR DELAY '00:00:02';");
       return _context.Books.Include(b => b.Author).ToList();
     }
 
-    void IBooksRepository.AddBook(Book bookToAdd)
+    public async Task<IEnumerable<Book>> GetBooksAsync()
+    {
+      await _context.Database.ExecuteSqlRawAsync("WAITFOR DELAY '00:00:02';");
+      return await _context.Books.Include(b => b.Author).ToListAsync();
+    }
+
+    public async Task<IEnumerable<Entities.Book>> GetBooksAsync(
+        IEnumerable<Guid> bookIds)
+    {
+      return await _context.Books.Where(b => bookIds.Contains(b.Id))
+          .Include(b => b.Author).ToListAsync();
+    }
+
+
+    public void AddBook(Book bookToAdd)
     {
       if (bookToAdd == null)
       {
         throw new ArgumentNullException(nameof(bookToAdd));
       }
+
       _context.Add(bookToAdd);
     }
 
     public async Task<bool> SaveChangesAsync()
     {
+      // return true if 1 or more entities were changed
       return (await _context.SaveChangesAsync() > 0);
     }
 
