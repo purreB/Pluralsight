@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Books.API.Services;
 using Microsoft.Extensions.Logging;
+using Books.API.Filters;
 
 namespace Books.API.Controllers
 {
@@ -21,6 +22,7 @@ namespace Books.API.Controllers
     }
 
     [HttpGet]
+    [BookResultFilter()]
     public async Task<IActionResult> GetBooks()
     {
       var bookEntities = await _bookRepository.GetBooksAsync();
@@ -29,6 +31,7 @@ namespace Books.API.Controllers
 
     [HttpGet]
     [Route("{id}")]
+    [BookResultFilter()]
     public async Task<IActionResult> GetBook(Guid id)
     {
       var bookEntity = await _bookRepository.GetBookAsync(id);

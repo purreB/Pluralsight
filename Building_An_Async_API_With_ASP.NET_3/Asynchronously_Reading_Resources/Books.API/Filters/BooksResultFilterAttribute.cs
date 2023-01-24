@@ -9,23 +9,20 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Books.API.Filters
 {
-  public class BookResultFilterAttribute : ResultFilterAttribute
+  public class BooksResultFilterAttribute : ResultFilterAttribute
   {
     public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
     {
       var resultFromAction = context.Result as ObjectResult;
-
-      if (resultFromAction?.Value == null
-        || resultFromAction.StatusCode < 200
-        || resultFromAction.StatusCode >= 300)
+      if (resultFromAction.Value == null
+      || resultFromAction.StatusCode < 200
+      || resultFromAction.StatusCode >= 300)
       {
         await next();
         return;
       }
-
-
-      var mapper = context.HttpContext.RequestServices.GetRequiredService<Mapper>();
-      resultFromAction.Value = mapper.Map<Models.Book>(resultFromAction.Value);
+      var mapper = context.HttpContext.RequestServices.GetRequiredService<IMapper>();
+      resultFromAction.Value = mapper.Map<IEnumerable<Models.Book>>(resultFromAction.Value);
       await next();
     }
   }

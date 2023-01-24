@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Books.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using Books.API.Filters;
 
 namespace Books.API.Controllers
 {
@@ -18,6 +19,8 @@ namespace Books.API.Controllers
     }
 
     [HttpGet]
+    [BooksResultFilter]
+
     public IActionResult GetBooks()
     {
       var bookEntities = _booksRepository.GetBooks();
