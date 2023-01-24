@@ -48,5 +48,9 @@ namespace Books.API.Services
       }
     }
 
+    public IEnumerable<Book> GetBooks()
+    {
+      return _context.Books.Include(b => b.Author).ToList();
+    }
   }
 }
