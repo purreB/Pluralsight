@@ -35,7 +35,7 @@ namespace Books.API.Services
       return _context.Books.Include(b => b.Author).ToList();
     }
 
-    void AddBook(Book bookToAdd)
+    void IBooksRepository.AddBook(Book bookToAdd)
     {
       if (bookToAdd == null)
       {

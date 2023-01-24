@@ -56,6 +56,8 @@ namespace Books.API.Controllers
       _booksRepository.AddBook(bookEntity);
       await _booksRepository.SaveChangesAsync();
 
+      await _booksRepository.GetBookAsync(bookEntity.Id);
+
       return CreatedAtRoute("GetBook", new { id = bookEntity.Id }, bookEntity);
     }
   }
