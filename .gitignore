@@ -10,6 +10,14 @@
 *.sln.docstates
 *.idea
 
+/.vs
+*/bin
+*/obj
+*.user
+*/.vs
+/packages
+
+
 # Files and folders from modules
 Building-A-RESTful-API/Creating_Resources/CourseLibrary.API/obj
 Building-A-RESTful-API/Filtering_and_Searching/CourseLibrary.API/obj
@@ -26,8 +34,7 @@ Building-A-RESTful-API/Updating_Resources/CourseLibrary.API/bin
 Building-A-RESTful-API/Deleting_Resources/CourseLibrary.API/bin
 Implementing_Advanced_RESTful_Concerns/Supporting_Paging_for_Collection_Resources/CourseLibrary.API/bin
 Implementing_Advanced_RESTful_Concerns/Sorting_Resource_Collections/CourseLibrary.API/bin
-
-
+Securing_ASP.NET_Apps\User_Acc-Authentication_Practices\Implementing_Secure_Auth/Globomantics.Core/obj
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
