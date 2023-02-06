@@ -16,6 +16,7 @@
 *.user
 */.vs
 /packages
+*/node_modules
 
 
 # Files and folders from modules
